@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>My First Web Page</h1>
+    <p>My First Paragraph</p>
+
+    <p id="demo"></p>
+    <p id="magic">after click in button time will show</p>
+    <button onclick="setTimeout(click_to_see_magic, 3000)">click to see magic</button><br>
+    height and width in pixel<p id="pixel"></p>
+    <button onclick="pixel()">click to height and width </button>
+    current url<p id="url"></p>
+    <button onclick="url()">click to see current url </button>
+
+    <script>
+    // Basic operation
+    document.getElementById("demo").innerHTML = 5 + 6; //it set 11 in DOM of p tag
+    // document.write(5 + 6); // it is only used for testing
+    // window.alert(5 + 6);
+    console.log(5 + 6);
+
+    // datatype and variable
+    let str = "Apple, Banana, Kiwi";
+    let part = str.substr(-4);
+    console.log(part)
+    const points = new Array(40, 100, 1); //creating array object
+    console.log(points)
+    var srt = points.toString()
+    console.log(str)
+    // window.print("print") // it is used to print the page by printer that we are in.
+
+    // Math function
+    console.log(Math.round(4.5) );
+    console.log(Math.abs(-4.7)) ;
+    console.log(Math.random()) ;
+
+    // set it store only unique value
+    const letters = new Set(["a","b","c"]);
+    console.log(letters)
+
+    // map it is similar to dict in python
+    const fruits = new Map([
+        ["apples", 500],
+        ["bananas", 300],
+        ["oranges", 200]
+    ]); 
+    console.log(fruits)
+
+    // to check datatype of variable , object
+    console.log(typeof fruits)
+
+    "use strict"; //it restrict to use un declare variable
+
+
+    // use of this it refer to the object
+    const person = {
+        firstName: "John",
+        lastName : "Doe",
+        id       : 5566,
+        fullName : function() {
+            return this.firstName + " " + this.lastName;
+        }
+    };
+    console.log(person.fullName())
+
+    // Arrow function it is shorter
+    hello = () => {
+        return "Hello World!";
+    }
+    console.log(hello())
+
+    // Class in js
+    class Car {
+        constructor(name, year) {
+            this.name = name;
+            this.year = year;
+        }
+        age() {
+            let date = new Date();
+            return date.getFullYear() - this.year;
+        }
+    }
+    let myCar = new Car("Ford", 2014);
+    console.log(myCar.age())
+
+    // import and export
+
+    function click_to_see_magic(){
+        document.getElementById("magic").style.color = "blue";
+        document.getElementById("magic").innerText = new Date();
+    }
+
+    
+    // Browser Object Model (BOM)
+    
+    function pixel(){
+        document.getElementById("pixel").innerText = screen.height +","+ screen.width;
+    }
+
+    // See url
+    
+    function url(){
+        document.getElementById("url").innerText = window.location.href;
+    }
+
+    // cookies
+    document.cookie = "username=John Doe";
+    document.cookie = "token=hello1234";
+    console.log(document.cookie);
+
+    
+    </script>
+
+    
+</body>
+</html>
