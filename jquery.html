@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h4 id="hide_id">click me to hide (ID)</h4>
+    <h4 class="hide_class">click me to hide (CLASS)</h4>
+    <h4 id="hide_this">click me to hide (THIS)</h4>
+    <p><a href="https://www.w3schools.com/html/">HTML Tutorial</a></p>
+    <button>Click me</button>
+    <h4 id="double_click">double click me to hide (double_click)</h4>
+    <!-- <p id="p1">This is a paragraph. to check hower</p> -->
+    
+    Name: <input type="text" name="fullname"><br>
+    Email: <input type="text" name="email">
+    
+    <h4 id="multiple">multiple event</h4>
+    
+
+    
+    <button id="btn1">Show Text</button>
+    <button id="btn2">Show HTML</button>
+
+    <p id="test">This is some <b>bold</b> text in a paragraph.</p>
+
+    
+    name: <input type="text" name="email" id="name">
+    <button>Click me</button>
+
+
+    <h3 id="btn3">click to Append text</h3>
+
+    <form action="#" name="registration">
+        Name
+        <input type="text" id="name1"> 
+        <p id="name_error"></p>
+        <br>
+        email
+        <input type="email" id="email">
+        <p id="email_error"></p><br>
+        age
+        <input type="text" id="age">
+        <p id="age_error"></p><br>
+        password
+        <input type="password" id="password">
+        <p id="password_error"></p><br>
+        <input type="submit" id="submit">
+    </form>
+
+    
+    <div id="button" style="background:#98bf21;height:100px;width:100px;position:absolute;"></div>
+
+    <script>
+        $(document).ready(function(){  //this is use for run jquery after the html dom execute
+            $("#hide_id").click(function(){
+                $("#hide_id").hide();
+            });
+
+            $(".hide_class").click(function(){
+                $(".hide_class").hide();
+            });
+
+            $("#hide_this").click(function(){  //this indicate the current element
+                $(this).hide();
+            });
+
+            $("button").click(function(){
+                $("[href]").hide()
+            })
+
+            $("#double_click").dblclick(function(){
+                $("#double_click").hide()
+            })
+
+            $("#p1").hover(function(){
+                alert("You entered p1!");
+            },
+            function(){
+                alert("Bye! You now leave p1!");
+            });
+
+            $("input").focus(function(){  //it run when we foucs on input field
+                $(this).css("background-color", "yellow");
+            });
+
+            $("input").blur(function(){   //it run when we remove foucs on input field
+                $(this).css("background-color", "green");
+            });
+
+
+            $("#multiple").on({
+                mouseenter: function(){
+                    $(this).css("background-color", "lightgray");
+                },
+                mouseleave: function(){
+                    $(this).css("background-color", "lightblue");
+                },
+                click: function(){
+                    $(this).css("background-color", "yellow");
+                }
+            });
+
+            $("#button").click(function(){  //we can do animation as well
+                var div = $("#button");
+                div.animate({height: '300px', opacity: '0.4'}, "slow");
+                div.animate({width: '300px', opacity: '0.8'}, "slow");
+                div.animate({height: '100px', opacity: '0.4'}, "slow");
+                div.animate({width: '100px', opacity: '0.8'}, "slow");
+            }); 
+
+            $("#btn1").click(function(){
+                alert("Text: " + $("#test").text());
+            });
+
+            $("#btn2").click(function(){
+                alert("HTML: " + $("#test").html());
+            });
+
+            $("button").click(function(){
+                alert("Value: " + $("#name").val());
+            });
+
+            $("#btn3").click(function(){
+                $("p").append(" <b>Appended text</b>.");
+            });
+
+
+            $("#submit").click(function(){
+                var name_error = false
+                var email_error = false
+                var age_error = false
+                var password_error = false
+                if($("#name1").val() == ""){
+                    $("#name1").css("border", "3px solid red")
+                    $("#name_error").text("Please enter name")
+                    $("#name_error").css({"color":"red"})
+                    name_error = true
+                
+                }
+                else{
+                    $("#name_error").css({"display":"none"})
+                }
+                if($("#email").val() == ""){
+                    $("#email").css("border", "3px solid red")
+                    $("#email_error").text("Please enter email")
+                    $("#email_error").css({"color":"red"})
+                    email_error = true
+                }
+                else{
+                    $("#email_error").css({"display":"none"})
+                }
+                if($("#age").val() == ""){
+                    $("#age").css("border", "3px solid red")
+                    $("#age_error").text("Please enter age")                    
+                    $("#age_error").css({"color":"red"})
+                    age_error = true
+                }else{
+                    $("#age_error").css({"display":"none"})
+                }
+                if($("#password").val() == ""){
+                    $("#password").css("border", "3px solid red")
+                    $("#password_error").text("Please enter password")
+                    $("#password_error").css({"color":"red"})
+                    password_error = true
+                }
+                else{
+                    $("#password_error").css({"display":"none"})
+                }
+                if(name_error || email_error || age_error || password_error){
+                    return false
+                }
+                else{
+                    return true
+                }
+            })
+        });
+    </script>
+</body>
+</html>
